@@ -23,5 +23,6 @@ for s in second_str: # 두번째 str 값을 더함
 
 if first_result == second_result: # 첫번째 str 합과 두번째 str 합을 비교해서
     print("LUCKY") # 맞으면 LUCKY
+
 else:  # 틀리면 READY
     print("READY")
