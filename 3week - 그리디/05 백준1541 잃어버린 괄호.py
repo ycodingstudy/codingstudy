@@ -1,37 +1,28 @@
-expression = input()
-expression_length = len(expression)
+expression = input().split('-')
+# print(expression)
 
-stack_list = []
-minus_cnt = 0
-bracket = []
-j = 0
-for i in range(expression_length):
-    if expression[i] == '+':
-        if minus_cnt == 0:
-            stack_list.append(int(expression[j:i]))
-            j = i + 1
-        else:  # minus_cnt is 1
-            bracket.append(int(expression[j:i]))
-            j = i + 1
-    elif expression[i] == '-':
-        if minus_cnt == 0:
-            stack_list.append(int(expression[j:i]))
-            j = i + 1
-            minus_cnt += 1
-        else:  # minus_cnt is 1
-            bracket.append(int(expression[j:i]))
-            stack_list.append(-sum(bracket))
-            j = i + 1
-            bracket = []
-            minus_cnt = 0
-    else:
-        continue
-    if minus_cnt == 1 and i == expression_length - 1:
-        bracket.append(int(expression[j:i]))
-        stack_list.append(-sum(bracket))
-        # j = i (but 하지만 전부 끝남!
-        # minus_cnt = 0
+sub_total = []
+is_start_minus = False
+for i in range(len(expression)):
+    expr = expression[i].split('+')
 
-print(sum(stack_list))
-print(bracket)
+    total = 0
+    for num in expr:
+        if num == '' and i == 0:
+            is_start_minus = True
+        else:
+            total += int(num)
+    sub_total.append(total)
+# print(sub_total)
 
+if is_start_minus:
+    result = -sub_total[0]
+else:
+    result = sub_total[0]
+
+for i in range(1, len(sub_total)):
+    result -= sub_total[i]
+print(result)
+
+
+# -1-1-1
