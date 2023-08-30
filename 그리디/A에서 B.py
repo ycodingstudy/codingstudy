@@ -12,7 +12,7 @@ while True:
         temp.append(i * 2)
         temp.append(int(str(i)+"1"))
     arr = list(set(temp))
-    print(min(arr))
+    print(arr)
     if target in arr:
         break
     if min(arr) >= target:
