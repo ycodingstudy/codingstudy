@@ -15,16 +15,24 @@ for i in range(1,len(s)):
     if mCnt > 0 and len(s) == i+1: #마지막인 경우
         maxVal.append("1")
         mCnt = 0
+if not "K" in s:
+    maxVal = len(s) * "1"
+
 
 mCnt = 0
+before = ""
 for i in range(len(s)):
     #최소값 구하기
     if s[i] == "K":
         minVal.append("5")
+        mCnt = 0
+    elif s[i] == "M" and before != "M": #처음 M이 나온경우
+        minVal.append("1")
+        mCnt += 1
     elif s[i] == "M" and mCnt > 0:
         minVal.append("0")
-    elif s[i] == "M":
-        minVal.append("1")
+        mCnt += 1
+    before = s[i]
 
 print("".join(maxVal))
 print("".join(minVal))
