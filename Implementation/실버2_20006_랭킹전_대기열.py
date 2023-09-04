@@ -5,7 +5,8 @@ WAITING = 'Waiting!'
 
 p, m = map(int, input().split())
 
-lst = [[[1000, 'test']]] # 임시로 하나 데이터 넣어둠
+lst = []
+#lst = [[[1000, 'test']]] # 임시로 하나 데이터 넣어둠
 for i in range(p):
     player_num, player_str = list(sys.stdin.readline().rstrip().split())
     player_num = int(player_num)
@@ -20,7 +21,7 @@ for i in range(p):
     if flag == 0: # 방이 없다면 새로 만듬
         lst.append([[player_num, player_str]])
 
-lst.pop(0)
+#lst.pop(0)
 
 for i in range(len(lst)):
     lst[i].sort(key=lambda x: x[1])
