@@ -17,10 +17,6 @@ def convert_second_to_minute_second(second):
 
     return result
 
-
-
-    return minute,sec
-
 def convert_minute_second_to_second(minute_second):
     minute = int(minute_second[:2])
     sec =  minute * 60 + int(minute_second[3:5])
