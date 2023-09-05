@@ -1,46 +1,47 @@
-# [문제 이해를 못함;;;;;;;;]
-# 골이 들어간 시간 , 골 넣은 팀 (1팀 or 2팀)
-# 48분 진행
+def toSecond(goal_time):
+    m, s = goal_time.split(":")
+    sec = int(m) * 60 + int(s)
+    return sec
 
+
+def toStr(time):
+    m = time // 60
+    s = time % 60
+    res = str(m) + ":" if m >= 10 else "0" + str(m) + ":"
+    res += str(s) if s >= 10 else "0" + str(s)
+    return res
+
+
+win = {"1": 0, "2": 0}
+win_time1, win_time2 = 0, 0
 n = int(input())
-one_win_time, two_win_time = 0, 0  # 초로 관리
-prev_team, cur_team = '', ''
-prev_m, prev_sec = 0, 0
+prev = 0
+prev_goal = None
 for i in range(n):
-    cur_team, cur_time = input().split()
-    m, sec = map(int, cur_time.split(':'))
+    goal, t = input().split()
+    cur = toSecond(t)
+    win[goal] += 1
 
-    win_time = 0
-    if i != 0:
-        win_time = (m * 60 + sec) - (prev_m * 60 + prev_sec)
-
-    if cur_team == '1':
-        if prev_team == cur_team:
-            one_win_time += win_time
-        else:
-            two_win_time = win_time
+    if win["1"] > win["2"]:
+        current_goal = "1"
+    elif win["1"] < win["2"]:
+        current_goal = "2"
     else:
-        if prev_team == cur_team:
-            two_win_time += win_time
-        else:
-            one_win_time = win_time
+        current_goal = None
 
-    prev_m, prev_sec = m, sec
-    if i != n - 1:
-        prev_team = cur_team
+    if prev_goal == "1":
+        win_time1 += cur - prev
+    elif prev_goal == "2":
+        win_time2 += cur - prev
 
-    # last
-last_win_time = (48 * 60) - (prev_m * 60 + prev_sec)
-if cur_team == '1':
-    if prev_team == cur_team:
-        one_win_time += last_win_time
-    else:
-        two_win_time = last_win_time
-else:
-    if prev_team == cur_team:
-        two_win_time += last_win_time
-    else:
-        one_win_time = last_win_time
+    prev = cur
+    prev_goal = current_goal
 
-print('{:0>2}:{:0>2}'.format(one_win_time // 60, one_win_time % 60))
-print('{:0>2}:{:0>2}'.format(two_win_time // 60, two_win_time % 60))
+# 게임이 끝난 후
+if prev_goal == "1":
+    win_time1 += 48 * 60 - prev
+elif prev_goal == "2":
+    win_time2 += 48 * 60 - prev
+
+print(toStr(win_time1))
+print(toStr(win_time2))
