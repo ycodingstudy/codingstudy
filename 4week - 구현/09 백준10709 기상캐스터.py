@@ -6,8 +6,9 @@ for i in range(h):
     for j in range(w):
         if row[j] == 'c':
             board[i][j] = 0  # 처음에 구름이 떠 있던 경우
-        elif j != 0:  # and row[j] == '.'
+        elif j != 0:  # 인덱스 범위를 막아주기 위함. and row[j] == '.'
             time = 0
+            # while로 바꿔서 처리???
             for k in range(j - 1, -1, -1): # 거꾸로 가면서 가장 가까운 구름과의 거리(시간) 확인
                 time += 1
                 if row[k] == 'c':
