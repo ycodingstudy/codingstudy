@@ -5,7 +5,7 @@ for i in range(H):
     temp = []
     cnt = 0
     temp.append(0 if town[0] == "c" else -1)
-    for i in range(1,W):
+    for i in range(1, W):
         if town[i] == "c":
             temp.append(0)
         elif temp[i-1] >= 0:
