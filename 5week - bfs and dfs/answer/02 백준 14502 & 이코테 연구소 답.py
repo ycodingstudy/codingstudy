@@ -1,49 +1,58 @@
-import copy
-from collections import deque
 n, m = map(int, input().split())
-graph = []
-dx = [0, 0, 1, -1]  # 우, 좌, 하, 상
-dy = [1, -1, 0, 0]
+data = []  # 초기 맵 리스트
+temp = [[0] * m for _ in range(m)]  # 벽을 설치한 뒤의 맵 리스트
 
-def bfs():
-    queue = deque()
-    tmp_graph = copy.deepcopy(graph)
+for _ in range(n):
+    data.append(list(map(int, input().split())))
 
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+result = 0
+
+
+# dfs로 바이러스가 사방으로 퍼지게 하기
+def virus(x, y):
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
+        if 0 <= nx < n and 0 <= ny < m:
+            if temp[nx][ny] == 0:
+                temp[nx][ny] = 2
+                virus(nx, ny)
+# 안전 영역 크기 계산
+def get_score():
+    score = 0
     for i in range(n):
         for j in range(m):
-            if tmp_graph[i][j] == 2:
-                queue.append((i, j))
+            if temp[i][j] == 0:
+                score += 1
+    return score
 
-    while queue:
-        x, y = deque.popleft()
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            if 0 <= nx < n and 0 <= ny < m:
-                if tmp_graph[nx][ny] == 0: # 감염 X이고 벽 X인경우
-                    tmp_graph[nx][ny] = 2
-                    queue.append((nx, ny))
-
-    global answer
-    cnt = 0
-    for i in range(n):
-        cnt += tmp_graph[i].count(0)
-
-    answer = max(answer, cnt)
-
-def makeWall(cnt):
-    if cnt == 3:
-        bfs()
+# dfs로 울타리 설치 + 안전영역 크기 계산
+def dfs(count):
+    global result
+    if count == 3:
+        for i in range(n):
+            for j in range(m):
+                temp[i][j] = data[i][j]
+        # 각 바이러스 위치에서 전파 진행
+        for i in range(n):
+            for j in range(m):
+                if temp[i][j] == 2:
+                    virus(i, j)
+        # 안전 영역 최대값
+        result = max(result, get_score())
         return
+    # 빈 공간에 울타리 설치
     for i in range(n):
         for j in range(m):
-            if graph[i][j] == 0:
-                graph[i][j] = 1 # 벽 세우고
-                makeWall(cnt + 1) # 다음 벽 세우고
-                graph[i][j] = 0 # 벽 허뭄(백트레킹)
+            if data[i][j] == 0:
+                data[i][j] = 1
+                count += 1
+                dfs(count)
+                data[i][j] = 0
+                count -= 1
 
-for i in range(n):
-    graph.append(list(map(int, input().split())))
-answer = 0
-makeWall(0)
-print(answer)
+dfs(0)
+print(result)
