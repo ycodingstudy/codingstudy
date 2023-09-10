@@ -12,7 +12,7 @@ for i in range(n):
     lst = list(map(int, sys.stdin.readline().split()))
     for j in range(len(lst)):
         if lst[j] != 0:
-            virus_coordinate.append([i, j, lst[j]]) # 바이러스 좌표 + 값을 넣어줌
+            virus_coordinate.append([i, j, lst[j]]) # 바이러스 좌표 + 바이러스종류를 넣어줌
     graph.append(lst)
 
 
@@ -26,8 +26,8 @@ def bfs(num):
     queue = deque(virus_coordinate)
 
     for second in range(num): # 1초 2초 이런식으로 초를 세주기위해서
-        cycle = len(queue) # 계속 queue의 길이를 업데이트해줌.(큐 안에는 좌표가 들어있음)
 
+        cycle = len(queue) # 계속 queue의 길이를 업데이트해줌.(큐 안에는 좌표가 들어있음)
         for r in range(cycle): # 큐의 길이만큼 반복하도록 지정.
             tmp_x, tmp_y = queue.popleft()
             for i in range(4):

@@ -13,6 +13,7 @@ for i in range(m):
     graph[a] += [b]
     graph[b] += [a]
 
+
 for j in graph:
     j.sort()
 

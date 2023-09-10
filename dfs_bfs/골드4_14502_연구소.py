@@ -8,8 +8,8 @@ import copy
 n, m = map(int, sys.stdin.readline().split())
 
 graph = []
-blank_coordinate = []
-virus_coordinate = []
+blank_coordinate = [] # 0이 있는 좌표
+virus_coordinate = [] # 2이 있는 좌표
 dx = [0, 0, 1, -1]
 dy = [1, -1, 0, 0]
 
@@ -47,6 +47,7 @@ def bfs(graph):
 combinations_coordinate = list(combinations(blank_coordinate, 3))
 
 result = 0
+#[ [[2,3], [3,2], [4, 4]],   [[3,4] , ..]
 for combinations_part in combinations_coordinate:  # 0인곳 벽치기
     copy_graph = copy.deepcopy(graph)
     for i in range(3):

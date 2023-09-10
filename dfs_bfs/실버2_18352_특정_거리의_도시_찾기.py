@@ -25,6 +25,7 @@ def bfs(start_num):
 bfs(x)
 
 result.sort()
+
 if not result:
     print(-1, end = '')
 

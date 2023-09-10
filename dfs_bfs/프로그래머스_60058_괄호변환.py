@@ -22,8 +22,6 @@ def check_proper(p):
             count -= 1
     return True #쌍이 맞는 경우에 True
 
-
-
 def solution(p):
     answer = ''
     # 1번
