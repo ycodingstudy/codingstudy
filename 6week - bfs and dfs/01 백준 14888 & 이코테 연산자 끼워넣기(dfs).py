@@ -2,9 +2,8 @@
 # 주어진 수의 순서 바꾸기 X
 # 연산자 우선 순위 무시하고 앞에서부터, 나눗셈은 (//)으로
 # 목적 : 식의 결과가 최대, 최소 인 것
-from collections import deque
-
 # oper = ['+', '-', '*', '//']
+
 n = int(input())
 num = list(map(int, input().split()))  # [3, 4, 5]
 op = list(map(int, input().split()))  # [1, 0, 1, 0] visited
@@ -27,7 +26,6 @@ def calculate(x, y, i):
 
 
 lst = []
-
 
 def dfs(prev_res, num_idx, oper):  # 최초로 넣을 때 num[0], 1로 시작
     if num_idx == n:
