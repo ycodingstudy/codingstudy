@@ -24,11 +24,12 @@ def bfs(i, K):
 N, M, K, X = map(int, input().split())
 visited = [False] * (N + 1)
 graph = [[False] * (N + 1) for _ in range(N + 1)]
+
 # 그래프 체크
 for _ in range(M):
     x, y = map(int, input().split())
     graph[x][y] = True
-
+print(graph)
 result = bfs(X, K)
 if len(result) == 0:
     print(-1)
