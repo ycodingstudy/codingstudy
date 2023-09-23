@@ -26,12 +26,13 @@ for _ in range(num):
     graph = [[0 for i in range(n)] for j in range(m)]
     for _ in range(k):
         x, y = map(int, sys.stdin.readline().split())
-        graph[x][y] = 1
-    cnt = 0
+        graph[x][y] = 1 # 배추 위치 초기화
+
+    cnt = 0 # 몇 곳 필요 한지
     for i in range(m):
         for j in range(n):
             if graph[i][j] == 1:
-                bfs(graph, i, j)
+                bfs(graph, i, j) # 0으로 바꿔버림
                 cnt += 1
     print(cnt)
 
