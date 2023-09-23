@@ -1,9 +1,9 @@
 import sys
 from itertools import permutations
 
-n = int(sys.stdin.readline())
-num_lst = list(map(int, sys.stdin.readline().split()))
-operation_lst = list(map(int, sys.stdin.readline().split()))
+n = int(sys.stdin.readline()) # 2
+num_lst = list(map(int, sys.stdin.readline().split())) # 5 6
+operation_lst = list(map(int, sys.stdin.readline().split())) # 0 0 1 0
 
 maximum = -int(1e9)
 minimum = int(1e9)
@@ -27,6 +27,10 @@ def dfs(depth, total, plus, minus, multiply, divide):
 dfs(1, num_lst[0], operation_lst[0], operation_lst[1], operation_lst[2], operation_lst[3])
 print(maximum)
 print(minimum)
+
+
+
+
 
 
 

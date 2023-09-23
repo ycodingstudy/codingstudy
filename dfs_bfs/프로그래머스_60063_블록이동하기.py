@@ -55,10 +55,3 @@ def solution(board):
                         queue.append((nr2, nc2, rotated_d, mv + 1))
                         visited.add((nr2, nc2, rotated_d))
 
-
-
-
-
-board = [[0, 0, 0, 1, 1],[0, 0, 0, 1, 0],[0, 1, 0, 1, 1],[1, 1, 0, 0, 1],[0, 0, 0, 0, 0]]
-length = len(board)
-visited = [[0 for i in range(length + 1)] for j in range(length + 1)]
