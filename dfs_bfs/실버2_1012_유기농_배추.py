@@ -1,6 +1,7 @@
 import sys
 from collections import deque
 
+# 문제 핵심은 영역을 구하는 것
 def bfs(graph, a, b):
     dx = [1, -1, 0, 0]
     dy = [0, 0, 1, -1]
