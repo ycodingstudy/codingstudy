@@ -38,5 +38,5 @@ def bi_search_recursion(start, end): # index가 아니라 value가 들어감
 if sum(request) <= budget:
     print(request[-1])
 else:
-    res = bi_search_recursion(0, request[-1]) # request[0]가 아니라 0을 넣어야함
+    res = bi_search_recursion(0, request[-1]) # request[0]가 아니라 0을 넣어야함(값이 모두 극단에 있는 경우)
     print(res)
