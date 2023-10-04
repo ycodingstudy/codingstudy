@@ -1,6 +1,6 @@
 n, m = map(int,input().split())
 arr = [int(input()) for _ in range(n)]
-start, end = min(arr), sum(arr)
+start, end = max(arr), sum(arr)
 result = 0
 while start <= end:
     mid = (start+end) // 2
@@ -12,9 +12,9 @@ while start <= end:
             cnt +=1
         current -= k
 
-    if cnt < m:
+    if cnt <= m:
         end = mid-1
+        result = mid
     else:
         start = mid + 1
-        result = mid
 print(result)
