@@ -31,7 +31,7 @@ def bi_search_recursion(start, end): # index가 아니라 value가 들어감
     mid = (start + end) // 2 # 0과 150 -> mid : 75
     if can_allocate(mid):  # 예산을 늘려감
         return bi_search_recursion(mid + 1, end) # 76과 150 -> mid = 113 -> # 113과 150 -> mid = 131
-    else:  # 예산을 줄여감
+    else:  # 예산을 줄여감x
         return bi_search_recursion(start, mid - 1) # 113과 130 -> mid = 121
 
 
