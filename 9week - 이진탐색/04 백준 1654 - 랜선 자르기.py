@@ -2,6 +2,8 @@
 
 def check(limit, arr, n):
     # 목적 : limit의 크기로 arr을 나누어서 n개를 만들 수 있는가
+    if limit == 0:
+        return False # zero division error
     for a in arr:
         n = n - (a // limit)
     return n <= 0 # n개보다 많이 만드는 것도 n에 포함 됨
@@ -25,7 +27,7 @@ for _ in range(k):
     origin.append(int(input()))
 
 origin.sort()
-print(bi_search_iter(origin, 0, origin[-1], n))
+print(bi_search_iter(origin, 1, origin[-1], n)) # zero division error
 
 
 
